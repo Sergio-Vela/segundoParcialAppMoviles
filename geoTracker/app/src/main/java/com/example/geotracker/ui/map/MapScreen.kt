@@ -20,8 +20,7 @@ import com.google.maps.android.compose.rememberMarkerState
 
 @Composable
 fun MapScreen(
-    modifier: Modifier = Modifier,
-    align: Modifier.Companion.(Alignment) -> Modifier
+    modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
     val viewModel: MapViewModel = viewModel(
@@ -55,7 +54,7 @@ fun MapScreen(
 
     Box(modifier = modifier.fillMaxSize()) {
         if (state.isLoading) {
-            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+            CircularProgressIndicator(modifier = Modifier)
         }
 
         GoogleMap(
@@ -99,7 +98,7 @@ fun MapScreen(
     if (state.errorMessage != null) {
         Text(
             text = state.errorMessage!!,
-            modifier = Modifier.align(Alignment.Center),
+            modifier = Modifier,
             color = androidx.compose.ui.graphics.Color.Red
         )
     }
@@ -107,7 +106,7 @@ fun MapScreen(
     if (!state.isLoading && state.locations.isEmpty() && state.errorMessage == null) {
         Text(
             text = "No hay ubicaciones registradas",
-            modifier = Modifier.align(Alignment.Center)
+            modifier = Modifier
         )
     }
 }
